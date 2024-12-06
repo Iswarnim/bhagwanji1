@@ -1,0 +1,622 @@
+body {
+    font-family: 'Tiro Devanagari Hindi', serif; /* Updated font */
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #f8f8f8, #e0e0e0);
+}
+
+header {
+    position: sticky;
+    top: 0;
+    background-image: url('your-image-path.png');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    font-family: 'Georgia', serif;
+}
+
+    header h1 {
+        margin: 0;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        font-family: 'Georgia', serif;
+    }
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+    nav ul {
+        list-style-type: none;
+        padding: 0;
+        display: flex;
+        margin: 0;
+    }
+
+        nav ul li {
+            margin-left: 1rem;
+        }
+
+            nav ul li a {
+                color: #fff;
+                text-decoration: none;
+                transition: color 0.3s ease;
+                font-size: 18px;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            }
+
+                nav ul li a:hover {
+                    color: #FF6600;
+                    font-size: 20px;
+                }
+
+main {
+    padding: 2rem;
+    transition: transform 0.5s ease-in-out;
+}
+
+#home {
+    margin-bottom: 2rem;
+}
+
+/* Add this to ensure proper alignment for both web and mobile views */
+section {
+    scroll-margin-top: 100px; /* Adjust the value as per your header height */
+}
+
+#about {
+    background-image: url('img.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    color: #fff;
+    background-color: rgba(255, 102, 0, 0.5);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    scroll-margin-top: 100px; /* Adjust the value as per your header height */
+    font-family: 'Centaur', serif; /* Updated font for Overview */
+}
+
+    #about h2 {
+        color: #FF6600;
+        font-family: 'Californian FB', serif;
+        text-align: center;
+        font-size: 36px;
+        text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.7);
+    }
+
+    #about p,
+    #about-detailed p {
+        font-family: 'Centaur', serif; /* Updated font for Overview paragraphs */
+        font-size: 27.5px; /* Increased font size to 27.5px */
+        text-align: justify; /* Added text justification */
+    }
+
+#about-detailed, #services, #contact, #gallery {
+    padding: 2rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    margin: 2rem auto;
+    width: 80%;
+    max-width: 900px;
+    font-family: 'Tiro Devanagari Hindi', serif; /* Updated font */
+    font-size: 22px;
+    line-height: 1.6;
+    background-color: rgba(255, 102, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    scroll-margin-top: 100px; /* Adjust the value as per your header height */
+}
+
+    #about-detailed h2, #services h2, #contact h2, #gallery h2 {
+        color: #333;
+        text-shadow: none;
+        text-align: center;
+        font-size: 28px;
+        margin-bottom: 1rem;
+        border-bottom: 2px solid #FF6600;
+        display: inline-block;
+        padding-bottom: 0.5rem;
+    }
+
+.about-content {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    position: relative;
+}
+
+.about-text {
+    width: 48%;
+    text-align: justify;
+    padding: 1rem;
+    z-index: 1;
+    position: relative;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 7px;
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-family: 'Segoe Script', cursive; /* Updated font */
+    font-size: 20px; /* Updated font size */
+}
+
+.image-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    text-align: center; /* Center images in container */
+}
+
+    .image-container.swaroop-image {
+        text-align: center; /* Center Swaroop image specifically */
+    }
+
+.about-image {
+    width: 100%; /* Ensure images are responsive */
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.5s ease;
+    margin: 0 auto; /* Center align the images */
+}
+
+.book-images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.book-image {
+    max-width: 200px; /* Adjust the width as needed */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#gallery {
+    padding: 2rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    margin: 2rem auto;
+    width: 80%;
+    max-width: 900px;
+    font-family: 'Tiro Devanagari Hindi', serif; /* Updated font */
+    font-size: 22px;
+    line-height: 1.6;
+    background-color: rgba(255, 102, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    scroll-margin-top: 100px; /* Adjust the value as per your header height */
+}
+
+    #gallery h2 {
+        color: #333;
+        text-shadow: none;
+        text-align: center;
+        font-size: 28px;
+        margin-bottom: 1rem;
+        border-bottom: 2px solid #FF6600;
+        display: inline-block;
+        padding-bottom: 0.5rem;
+    }
+
+.gallery-images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+    .gallery-images a {
+        display: block;
+        flex: 1 0 calc(25% - 1rem); /* Four images per row */
+        box-sizing: border-box;
+    }
+
+    .gallery-images img {
+        width: 100%;
+        height: 200px; /* Fixed height for consistency */
+        object-fit: cover;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+
+        .gallery-images img:hover {
+            transform: scale(1.1);
+        }
+
+@media (max-width: 768px) {
+    .gallery-images a {
+        flex: 1 0 calc(50% - 1rem); /* Two images per row on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-images a {
+        flex: 1 0 100%; /* One image per row on very small screens */
+    }
+}
+
+/* Contact Section */
+#contact {
+    padding: 2rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    margin: 2rem auto;
+    width: 80%;
+    max-width: 900px;
+    font-family: 'Tiro Devanagari Hindi', serif;
+    font-size: 22px;
+    line-height: 1.6;
+    background-color: rgba(255, 102, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    scroll-margin-top: 100px;
+}
+
+    #contact h2 {
+        color: #333;
+        text-shadow: none;
+        text-align: center;
+        font-size: 28px;
+        margin-bottom: 1rem;
+        border-bottom: 2px solid #FF6600;
+        display: inline-block;
+        padding-bottom: 0.5rem;
+    }
+
+.contact-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.contact-form {
+    flex: 1;
+    min-width: 250px;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+    .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 0.5rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+        font-family: 'Tiro Devanagari Hindi', serif;
+    }
+
+.contact-btn {
+    background-color: #FF6600;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    .contact-btn:hover {
+        background-color: #e65500;
+    }
+
+.contact-info {
+    flex: 1;
+    min-width: 250px;
+}
+
+    .contact-info p, .contact-info ul {
+        margin-bottom: 1rem;
+        font-size: 18px;
+    }
+
+    .contact-info ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+        .contact-info ul li {
+            margin-bottom: 0.5rem;
+        }
+
+footer {
+    background-color: rgba(255, 102, 0, 0.8); /* Match your site s color scheme */
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    width: 100%;
+    font-family: 'Tiro Devanagari Hindi', serif;
+    position: relative; /* Ensure footer stays at the bottom */
+    bottom: 0;
+}
+
+    footer p {
+        margin: 0;
+        font-size: 18px;
+    }
+
+/* Responsive footer styling */
+@media (max-width: 768px) {
+    footer {
+        padding: 1rem;
+        font-size: 16px;
+    }
+}
+/* Responsive styles for mobile view */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+        nav ul li {
+            margin-left: 0;
+            margin-bottom: 1rem; /* Add some space between the items */
+        }
+
+            nav ul li a {
+                font-size: 20px; /* Adjust font size if needed */
+            }
+
+    /* Adjust temple figure position */
+    .about-content {
+        flex-direction: column; /* Stack the content vertically */
+    }
+
+    .image-container {
+        order: -1; /* Move the image above the text */
+        width: 100%;
+    }
+
+    .about-text {
+        width: 100%;
+        text-align: center; /* Center align the text */
+    }
+
+    .about-image {
+        width: 80%; /* Adjust the width of the image */
+        margin-bottom: 1rem; /* Add space below the image */
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+#language-switcher {
+    background-color: #FF6600;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    #language-switcher:hover {
+        background-color: #e65500;
+    }
+
+/* Style for the language switch button */
+#language-switcher {
+    background-color: #FF6600;
+    color: #fff;
+    border: none;
+    padding: 0.3rem 0.6rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-left: 1rem;
+    border-radius: 50%; /* Round button */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
+    font-size: 1.5rem; /* Adjust font size */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+}
+
+    /* Hover effect for the button */
+    #language-switcher:hover {
+        background-color: #e65500;
+        transform: scale(1.1); /* Slightly enlarge on hover */
+    }
+
+/* Media query for mobile view */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: flex-start; /* Align items to the start */
+    }
+
+        nav ul li {
+            margin-bottom: 0.5rem; /* Add space between items vertically */
+        }
+
+            nav ul li:last-child {
+                margin-bottom: 1.5rem; /* Add extra space below the last nav item */
+            }
+
+    #language-switcher {
+        margin-left: 0; /* Remove left margin */
+        margin-top: 0.5rem; /* Adjust top margin */
+        padding: 0.2rem 0.5rem; /* Reduced padding for smaller screens */
+        font-size: 1rem; /* Adjusted font size for smaller screens */
+        border-radius: 50%; /* Keep the button round */
+        height: 35px;
+        width: 35px;
+        position: absolute;
+        bottom: 0.5rem;
+        right: 0.5rem;
+    }
+}
+
+/* Media query for very small screens */
+@media (max-width: 480px) {
+    nav ul {
+        align-items: center; /* Center align items */
+    }
+
+        nav ul li {
+            margin-bottom: 0.5rem; /* Adjust space between items */
+        }
+
+            nav ul li:last-child {
+                margin-bottom: 1rem; /* Adjust space below the last nav item */
+            }
+
+    #language-switcher {
+        margin-top: 0.5rem; /* Ensure there's space above the button */
+        font-size: 0.9rem; /* Further reduced font size for very small screens */
+        height: 30px;
+        width: 30px;
+        position: relative;
+        bottom: 1rem; /* Adjust position */
+        right: 1rem; /* Adjust position */
+    }
+}
+
+
+/* Initial state for body */
+body {
+    transform-origin: left center;
+    transition: transform 1s, opacity 1s;
+}
+
+/* Style for the language switch button */
+#language-switcher {
+    background-color: #FF6600;
+    color: #fff;
+    border: none;
+    padding: 0.3rem 0.6rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-left: 1rem;
+    border-radius: 50%; /* Round button */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
+    font-size: 1.5rem; /* Adjust font size */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+}
+
+    /* Hover effect for the button */
+    #language-switcher:hover {
+        background-color: #e65500;
+        transform: scale(1.1); /* Slightly enlarge on hover */
+    }
+
+/* Style for the welcome paragraph */
+#welcome-paragraph {
+    font-family: 'Dancing Script', cursive;
+    color: #880e4f;
+    background: linear-gradient(45deg, #ffebee, #f8bbd0);
+    padding: 1.5rem;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    font-size: 1.7rem;
+    margin: 1.5rem auto;
+    width: 80%;
+    animation: fadeIn 2s ease-in-out;
+    border: 2px solid #880e4f;
+}
+
+/* Keyframe for fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Media query for mobile view */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: flex-start; /* Align items to the start */
+    }
+
+        nav ul li {
+            margin-bottom: 0.5rem; /* Add space between items vertically */
+        }
+
+    #language-switcher {
+        margin-left: 0; /* Remove left margin */
+        margin-top: 1rem; /* Add top margin */
+        padding: 0.2rem 0.5rem; /* Reduced padding for smaller screens */
+        font-size: 1rem; /* Adjusted font size for smaller screens */
+        border-radius: 50%; /* Keep the button round */
+        height: 35px;
+        width: 35px;
+        position: static; /* Change position to static for better layout */
+    }
+
+    header {
+        display: flex;
+        flex-direction: column; /* Stack elements vertically */
+        align-items: flex-start; /* Align items to the start */
+    }
+
+    nav {
+        width: 100%; /* Ensure nav takes full width */
+    }
+
+        nav ul {
+            width: 100%; /* Ensure ul takes full width */
+        }
+
+    #language-switcher {
+        align-self: center; /* Center the language switch button */
+    }
+
+    #welcome-paragraph {
+        font-size: 1.4rem; /* Adjust font size for mobile */
+        width: 90%; /* Adjust width for mobile */
+    }
+}
+
+/* Media query for very small screens */
+@media (max-width: 480px) {
+    nav ul {
+        align-items: center; /* Center align items */
+    }
+
+        nav ul li {
+            margin-bottom: 0.5rem; /* Adjust space between items */
+        }
+
+    #language-switcher {
+        margin-top: 0.5rem; /* Ensure there's space above the button */
+        font-size: 0.9rem; /* Further reduced font size for very small screens */
+        height: 30px;
+        width: 30px;
+    }
+
+    #welcome-paragraph {
+        font-size: 1.2rem; /* Further adjust font size for very small screens */
+        width: 95%; /* Further adjust width for very small screens */
+    }
+}
+
