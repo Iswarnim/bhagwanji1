@@ -620,3 +620,233 @@ body {
     }
 }
 
+
+/* Existing styles for other sections remain unchanged */
+
+/* Style specifically for the Temple's Deities section */
+#temples-deities {
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 800px;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #f9f9f9; /* Ensure same background color as About section */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Same shadow effect */
+}
+
+    #temples-deities h2 {
+        font-family: 'Dancing Script', cursive; /* Same font */
+        color: #880e4f; /* Same color */
+        font-size: 2rem; /* Same font size */
+        margin-bottom: 1rem; /* Same spacing */
+    }
+
+    #temples-deities p {
+        font-family: 'Arial', sans-serif; /* Same font */
+        color: #333; /* Same color */
+        font-size: 1.2rem; /* Same font size */
+        line-height: 1.6; /* Same line height */
+        margin-bottom: 1.5rem; /* Same spacing */
+    }
+
+    #temples-deities h3 {
+        color: #bf360c; /* Color matching the design */
+        font-size: 1.5rem; /* Font size */
+        margin-top: 1.5rem; /* Spacing */
+        font-family: 'Arial', sans-serif; /* Font family */
+    }
+
+/* Media query for mobile view */
+@media (max-width: 768px) {
+    #temples-deities {
+        padding: 1.5rem;
+        margin: 1.5rem auto;
+        width: 90%;
+    }
+
+        #temples-deities h2 {
+            font-size: 1.5rem; /* Adjust font size for mobile */
+        }
+
+        #temples-deities p {
+            font-size: 1rem; /* Adjust font size for mobile */
+        }
+
+        #temples-deities h3 {
+            font-size: 1.2rem; /* Adjust font size for mobile */
+        }
+}
+
+/* Media query for very small screens */
+@media (max-width: 480px) {
+    #temples-deities {
+        padding: 1rem;
+        margin: 1rem auto;
+        width: 95%;
+    }
+
+        #temples-deities h2 {
+            font-size: 1.2rem; /* Adjust font size for small screens */
+        }
+
+        #temples-deities p {
+            font-size: 0.9rem; /* Adjust font size for small screens */
+        }
+
+        #temples-deities h3 {
+            font-size: 1rem; /* Adjust font size for small screens */
+        }
+}
+
+
+/* Style for the language switch button */
+#language-switcher {
+    background-color: #FF6600;
+    color: #fff;
+    border: none;
+    padding: 0.3rem 0.6rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-left: 1rem;
+    border-radius: 50%; /* Round button */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
+    font-size: 1.5rem; /* Adjust font size */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+}
+
+    /* Hover effect for the button */
+    #language-switcher:hover {
+        background-color: #e65500;
+        transform: scale(1.1); /* Slightly enlarge on hover */
+    }
+
+/* Style for the Welcome section heading and paragraph */
+#welcome {
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 800px;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #f9f9f9; /* Ensure same background color as About section */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Same shadow effect */
+}
+
+    #welcome h2 {
+        font-family: 'Dancing Script', cursive; /* Same font */
+        color: #880e4f; /* Same color */
+        font-size: 2rem; /* Same font size */
+        margin-bottom: 1rem; /* Same spacing */
+    }
+
+#shloka-paragraph {
+    font-family: 'Arial', sans-serif; /* Same font */
+    color: #333; /* Same color */
+    font-size: 1.2rem; /* Same font size */
+    line-height: 1.6; /* Same line height */
+    margin-bottom: 1.5rem; /* Same spacing */
+}
+
+/* Style specifically for the Temple's Deities section */
+#temples-deities {
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 800px;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #f9f9f9; /* Ensure same background color as About section */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Same shadow effect */
+}
+
+    #temples-deities h2 {
+        font-family: 'Dancing Script', cursive; /* Same font */
+        color: #880e4f; /* Same color */
+        font-size: 2rem; /* Same font size */
+        margin-bottom: 1rem; /* Same spacing */
+    }
+
+    #temples-deities p {
+        font-family: 'Arial', sans-serif; /* Same font */
+        color: #333; /* Same color */
+        font-size: 1.2rem; /* Same font size */
+        line-height: 1.6; /* Same line height */
+        margin-bottom: 1.5rem; /* Same spacing */
+    }
+
+    #temples-deities h3 {
+        color: #bf360c; /* Color matching the design */
+        font-size: 1.5rem; /* Font size */
+        margin-top: 1.5rem; /* Spacing */
+        font-family: 'Arial', sans-serif; /* Font family */
+    }
+
+/* Media query for mobile view */
+@media (max-width: 768px) {
+    #welcome {
+        padding: 1.5rem;
+        margin: 1.5rem auto;
+        width: 90%;
+    }
+
+        #welcome h2 {
+            font-size: 1.5rem; /* Adjust font size for mobile */
+        }
+
+    #shloka-paragraph {
+        font-size: 1rem; /* Adjust font size for mobile */
+    }
+
+    #temples-deities {
+        padding: 1.5rem;
+        margin: 1.5rem auto;
+        width: 90%;
+    }
+
+        #temples-deities h2 {
+            font-size: 1.5rem; /* Adjust font size for mobile */
+        }
+
+        #temples-deities p {
+            font-size: 1rem; /* Adjust font size for mobile */
+        }
+
+        #temples-deities h3 {
+            font-size: 1.2rem; /* Adjust font size for mobile */
+        }
+}
+
+/* Media query for very small screens */
+@media (max-width: 480px) {
+    #welcome {
+        padding: 1rem;
+        margin: 1rem auto;
+        width: 95%;
+    }
+
+        #welcome h2 {
+            font-size: 1.2rem; /* Adjust font size for small screens */
+        }
+
+    #shloka-paragraph {
+        font-size: 0.9rem; /* Adjust font size for small screens */
+    }
+
+    #temples-deities {
+        padding: 1rem;
+        margin: 1rem auto;
+        width: 95%;
+    }
+
+        #temples-deities h2 {
+            font-size: 1.2rem; /* Adjust font size for small screens */
+        }
+
+        #temples-deities p {
+            font-size: 0.9rem; /* Adjust font size for small screens */
+        }
+
+        #temples-deities h3 {
+            [_{{{CITATION{{{_1{](https://github.com/acasax/Grand-folk-company/tree/922f94158a026ee3e5d7d6450f2fb8ee1e193104/gotov%2Fsr%2Fsr%2Fsr%2Fservice%2Fmservice7.php)
