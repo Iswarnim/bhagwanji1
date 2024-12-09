@@ -125,11 +125,40 @@ section {
     }
 
 .about-content {
-    display: flex;
-    align-items: stretch; /* Ensure equal height */
-    justify-content: space-between;
+    display: flex; /* Use flexbox for layout */
+    align-items: stretch; /* Ensure children take full height */
+    justify-content: space-between; /* Ensure space between text and image */
     position: relative;
+    flex-wrap: nowrap; /* Prevent wrapping */
+    height: auto; /* Ensure flexible height */
 }
+
+
+.about-text {
+    width: 50%; /* Ensure text takes up half the container width */
+    text-align: justify;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background for readability */
+    color: #fff;
+    font-family: 'Segoe Script', cursive; /* Updated font */
+    font-size: 20px; /* Updated font size */
+    margin: 0; /* Remove default margin */
+}
+
+
+.image-container {
+    width: 50%; /* Ensure equal width for text and image */
+    position: relative;
+    overflow: hidden;
+}
+
+.about-image {
+    width: 100%; /* Ensure the image takes full width of its container */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 8px;
+    transition: transform 0.5s ease;
+}
+
 
 
 .about-text {
@@ -156,10 +185,24 @@ section {
     height: 100%; /* Ensure the image height matches the text section */
     object-fit: cover; /* Maintain aspect ratio while covering container */
 }
+.image-container.swaroop-image {
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    width: 100%; /* Ensure full width */
+    height: auto; /* Auto height to maintain aspect ratio */
+    overflow: hidden; /* Prevent overflow */
+    position: relative;
+}
 
-    .image-container.swaroop-image {
-        text-align: center; /* Center Swaroop image specifically */
-    }
+.image-container.swaroop-image .about-image {
+    max-width: 100%; /* Adjust width to fit the container */
+    max-height: 100%; /* Maintain aspect ratio */
+    display: block;
+    margin: auto; /* Center the image */
+    border-radius: 8px;
+    transition: transform 0.5s ease;
+}
 
 
 .book-images {
@@ -848,3 +891,43 @@ body {
 
         #temples-deities h3 {
             [_{{{CITATION{{{_1{](https://github.com/acasax/Grand-folk-company/tree/922f94158a026ee3e5d7d6450f2fb8ee1e193104/gotov%2Fsr%2Fsr%2Fsr%2Fservice%2Fmservice7.php)
+
+
+
+
+
+            #contact a {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 1rem;
+    color: #FF6600;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+#contact a:hover {
+    color: #e65500;
+}
+
+#contact a img {
+    margin-right: 0.5rem;
+    width: 50px;  /* Increased width */
+    height: 50px; /* Increased height */
+}
+
+
+
+@media (max-width: 768px) {
+    .about-content {
+        flex-direction: column; /* Stack items vertically for smaller screens */
+    }
+
+    .about-text, .image-container {
+        width: 100%; /* Full width for text and image on smaller screens */
+    }
+
+    .about-image {
+        height: auto; /* Adjust height to ensure proper aspect ratio */
+    }
+}
