@@ -1,176 +1,651 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shree Shree Shree 1008 Madhusudan Bhagwan Ji Temple</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-    <script defer src="script.js"></script>
-  
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
+    <script src="https://cdn.tailwindcss.com"></script>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
+
+    <style>
+        body {
+            font-family: 'Tiro Devanagari Hindi', serif;
+            background: linear-gradient(to bottom, #f8f8f8, #e0e0e0);
+            color: #333;
+            transform-origin: left center;
+            transition: transform 1s, opacity 1s;
+        }
+
+        /* Custom Shadows */
+        .custom-shadow {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Fade-in Animation */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.645, 0.045, 0.355, 1), transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Page Flip Animation */
+        body.page-flip {
+            transform: rotateY(-90deg);
+            opacity: 0;
+        }
+
+        /* Language Switcher Styling */
+        .language-switcher-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        .language-switcher-wrapper::after {
+            content: '▼';
+            font-size: 0.7rem;
+            color: white;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        /* Deity Card FLIP & HOVER Animation */
+        .perspective { perspective: 1500px; }
+        
+        .deity-card-wrapper {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 0.5rem;
+        }
+        
+        /* Fixed HOVER Effect (Will NOT apply to the zoomed-in cloned card) */
+        .deity-card-wrapper:not(.cloned-card):hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.15);
+            z-index: 10;
+        }
+
+        .deity-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s cubic-bezier(0.6, 0.01, 0.3, 1);
+            transform-style: preserve-3d;
+        }
+        .deity-card-front, .deity-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+        .deity-card-back {
+            transform: rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            background-color: #f9f9f9;
+        }
+        
+        /* Modal for cards */
+        .cloned-card {
+            position: fixed;
+            z-index: 100;
+            transition: all 0.6s cubic-bezier(0.6, 0.01, 0.3, 1);
+            transform-style: preserve-3d;
+        }
+        .cloned-card .deity-card-inner { box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); }
+        .cloned-card.is-flipped .deity-card-inner { transform: rotateY(180deg); }
+        
+        #deity-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 90;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            pointer-events: none; 
+        }
+        #deity-modal-overlay.is-visible {
+            opacity: 1;
+            pointer-events: auto; 
+        }
+        .deity-modal-content { opacity: 0; transition: opacity 0.4s ease 0.4s; }
+        .is-flipped .deity-modal-content { opacity: 1; }
+        
+        /* Modal images hover formatting */
+        .book-img-hover:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+    </style>
 </head>
-<body>
-    <header> <h1>Shree Shree Shree 1008 Madhusudan Bhagwan Ji</h1> <nav> <ul> <li><a href="#home">Home</a></li> <li><a href="#about-detailed">About</a></li> <li><a href="#temples-deities">Temple's Deities</a></li> <li><a href="#gallery">Gallery</a></li> <li><a href="#contact">Contact</a></li> </ul> <button id="language-switcher" onclick="window.location.href='2.html'">अ</button> </nav> </header>
-    <main id="home">
-        <section id="welcome" class="fade-in-on-scroll">
-            <h2>Welcome to Shree Madhusudan Bhagwan Ji Temple</h2>
-            <p>मधुसूदनो वीरः विष्णुर्वीथीपतिः प्रभुः। श्रीधरः श्रीपतिः श्रीमान् श्रीनिवासः श्रीनिधिः श्रीविभावनः॥</p>
-        </section>
-        <section id="about" class="about-section fade-in-on-scroll slide-in-left">
-            <h2>Overview</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>
-                        Shri Madhusudan Bhagwan Temple in Kashi is a kashi khandokat temple, dedicated to Lord Vishnu, and is believed to be self-manifested (Swayambhu). There is no documented origin of this temple, and the present priests are descendants of the Shakaladweepi Brahmins who have traditionally served and worshipped here.
+<body class="antialiased font-['Tiro_Devanagari_Hindi']">
 
-In later times, Maharaja Daduva, the former king of Ayodhya, established a Narmadeshwar Mahadev of crystal in his estate, in front of the same Madhusudan Bhagwan. He also renovated the Madhusudan Bhagwan Temple and appointed Dhanesh Mishra, who was already a priest of Madhusudan Bhagwan, as the priest of Narmadeshwar Mahadev.
+    <header class="text-white sticky top-0 z-50 shadow-md bg-cover bg-center" style="background-image: url('your-image-path.png');">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex items-center justify-between h-[80px]">
+                <div class="text-xl md:text-2xl font-bold tracking-wider whitespace-nowrap overflow-hidden text-ellipsis" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); font-family: 'Georgia', serif;" data-translate="title">Shree Shree Shree 1008 Madhusudan Bhagwan Ji</div>
+                
+                <nav class="hidden lg:flex items-center space-x-4 xl:space-x-6 text-lg" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);">
+                    <a href="#home" class="whitespace-nowrap hover:text-[#FF6600] transition-colors duration-300" data-translate="nav_home">Home</a>
+                    <a href="#about" class="whitespace-nowrap hover:text-[#FF6600] transition-colors duration-300" data-translate="nav_about">About</a>
+                    <a href="#deities" class="whitespace-nowrap hover:text-[#FF6600] transition-colors duration-300" data-translate="nav_deities">Temple's Deities</a>
+                    <a href="#gallery" class="whitespace-nowrap hover:text-[#FF6600] transition-colors duration-300" data-translate="nav_gallery">Gallery</a>
+                    <a href="#contact" class="whitespace-nowrap hover:text-[#FF6600] transition-colors duration-300" data-translate="nav_contact">Contact</a>
+                </nav>
+                
+                <div class="flex items-center space-x-3">
+                    <div id="read-aloud-controls" class="flex items-center space-x-1 mr-2 bg-black/30 rounded-full px-1">
+                        <button id="playBtn" class="p-2 rounded-full hover:bg-white/30 transition-colors" title="Read Aloud">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" /></svg>
+                        </button>
+                        <button id="pauseBtn" class="p-2 rounded-full hover:bg-white/30 transition-colors hidden" title="Pause">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 00-1 1v2a1 1 0 102 0V9a1 1 0 00-1-1zm6 0a1 1 0 00-1 1v2a1 1 0 102 0V9a1 1 0 00-1-1z" clip-rule="evenodd" /></svg>
+                        </button>
+                        <button id="stopBtn" class="p-2 rounded-full hover:bg-white/30 transition-colors hidden" title="Stop">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 11-16 0 8 8 0 0116 0zM7 7a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1zm6 0a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" /></svg>
+                        </button>
+                    </div>
 
-Madhusudan Bhagwan is also known as Vaman Keshav, and it is believed that visiting Madhusudan Bhagwan (Vaman Keshav) during the month of Vaishakh brings immense spiritual merit, fulfillment of desires, and accomplishments. The deity prefers offerings of butter and sugar, and garlands of fragrant Vaijayanti flowers. During the Adhik Maas (extra month in the Hindu calendar), the deity is also offered Malpua. The special significance of this deity is mentioned in the Vaishakh Mahatmya (authored by Vedavyasa). Traditional rituals involve worshipping trees in the temple and listening to Kathas (stories) during the month of Vaishakh. Lamps with five wicks are lit between Ekadashi and Purnima, and on Chaturdashi, the deity is bathed with Panchamrit.
-
-The temple of Madhusudan Bhagwan in Kashi is situated in the Kameshwar Mahadev locality, above the Trilochan Ghat, in Ayodhya Kothi. Every year, during the month of Vaishakh, a large number of devotees visit this temple, mesmerized by its spiritual aura and grace.
-
-                    </p>
-                </div>
-               <div class="image-container temple2-image">
-                    <img src="Temple2.jpg" alt="Temple Image" class="about-image">
+                    <div class="language-switcher-wrapper">
+                        <select id="language-switcher" class="bg-black/50 border border-white text-white rounded-full py-1 pl-3 pr-7 appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-white">
+                            <option value="en" class="bg-[#FF6600]">EN</option>
+                            <option value="hi" class="bg-[#FF6600]">HI</option>
+                        </select>
+                    </div>
+                    <button id="mobile-menu-button" class="lg:hidden p-2 rounded-md hover:bg-black/50 transition-colors"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-4 6h4"></path></svg></button>
                 </div>
             </div>
-        </section>
-        <section id="about-detailed" class="fade-in-on-scroll slide-in-right">
-            <h2>About</h2>
-            <h3>Swaroop</h3>
-            <p>
-                The idol of the Lord is carved on a black rock and is in Chaturbhuj (four-armed) form and has a gada in his lower left hand and a lotus bud on its stalk in his upper left hand and a Sankh in his lower right hand and a chakra in his upper right hand. Chaamardhar figures are carved on both sides of the idol.
-                His (Madhusudan Ji) face is fleshy, his nose is pointed, his eyes have brows, his lips are thin, he has a crown of five feathers on his head, round ear rings with a pointed chin, small and large bead necklaces, arm bands, armlets, he wears a garland of flowers down to his knees and a Vaishnav Tilak, he wears a pleated dhoti, and he stands in the Abhaya and Ward Mudra wearing wooden sandals.
-            </p>
-            <div class="image-container swaroop-image">
-                <img src="Swaroop.jpg" alt="Swaroop Image" class="about-image">
-            </div>
-            <h3>Story Associated with Name</h3>
-            <p>
-                Madhusudan is an important name of Lord Krishna. He got this name because he killed Madhu, an ancient demon enemy. A demon named Madhu had started troubling the Devs. He had received a boon from Brahma Dev that only a bhagawan could kill him. Madhu, with his power, drove the devs out of heaven and took over the heaven. The devs sought a solution to this problem from Brahma Dev. Brahma Dev told them that to kill Madhu, they would have to take the incarnation of Lord Vishnu. That is why, Lord Vishnu took the Vamana avatar to kill Madhu. When the Vamana avatar killed Madhu, Lord Vishnu came to be known as Madhusudan. Later, when Lord Vishnu incarnated as Lord Krishna, this name got attached to him. Thats why Vaman Keshav Known as Madhushudan.
-            </p>
-            <h3>References of Madhushudan Bhagawan in Reputed Books</h3>
-            <p>
-                Description of Lord Madhusudan is found in many cultural books, Vedas and novels, but at this time we are talking about Lord Madhusudan (Vaman Keshav) who is situated in Varanasi. As we know that the city of Kashi is the abode of gods, similarly Lord Vishnu is also present here in many forms and similarly Lord Madhusudan also resides here, Which is located in Ayodhya Kothi in Kameshwar Mahadev locality above Trilochan Ghat. His mention is also found in many books and government documents, some of them are given below:
-            </p>
-            <ul>
-                <li>
-                    Vaishakh Mahattam (This is a part of Skanda Purana which is written by Shri Veda Vyas)
-                    <div class="book-images">
-                        <a href="VaishakhMahattam1.jpg" target="_blank"><img src="VaishakhMahattam1.jpg" alt="Vaishakh Mahattam Image 1" class="book-image"></a>
-                        <a href="VaishakhMahattam2.jpg" target="_blank"><img src="VaishakhMahattam2.jpg" alt="Vaishakh Mahattam Image 2" class="book-image"></a>
-                    </div>
-                </li>
-                <li>
-                    "Kashi Ke Mandir Aur Murtiya" (Written by Dr. Kamal Giri, Dr. Maruti Nandan Tiwari and Dr. Vijay Prakash Singh and this book has been published by District Cultural Committee, Varanasi which is under the Cultural Department of Uttar Pradesh)
-                    <div class="book-images">
-                        <a href="KashiKeMandirAurMurtiya1.jpg" target="_blank"><img src="KashiKeMandirAurMurtiya1.jpg" alt="Kashi Ke Mandir Aur Murtiya Image 1" class="book-image"></a>
-                        <a href="KashiKeMandirAurMurtiya2.jpg" target="_blank"><img src="KashiKeMandirAurMurtiya2.jpg" alt="Kashi Ke Mandir Aur Murtiya Image 2" class="book-image"></a>
-                        <a href="KashiKeMandirAurMurtiya3.jpg" target="_blank"><img src="KashiKeMandirAurMurtiya3.jpg" alt="Kashi Ke Mandir Aur Murtiya Image 3" class="book-image"></a>
-                        <a href="KashiKeMandirAurMurtiya4.jpg" target="_blank"><img src="KashiKeMandirAurMurtiya4.jpg" alt="Kashi Ke Mandir Aur Murtiya Image 4" class="book-image"></a>
-                    </div>
-                </li>
-                <li>
-                    "Varanasi ka Pradhidevik Vaibhav" (published by Kubernath Sukul, Kalbhairav ​​Varanasi)
-                    <div class="book-images">
-                        <a href="VaranasiKaPradhidevikVaibhav1.jpg" target="_blank"><img src="VaranasiKaPradhidevikVaibhav1.jpg" alt="Varanasi ka Pradhidevik Vaibhav Image 1" class="book-image"></a>
-                        <a href="VaranasiKaPradhidevikVaibhav2.jpg" target="_blank"><img src="VaranasiKaPradhidevikVaibhav2.jpg" alt="Varanasi ka Pradhidevik Vaibhav Image 2" class="book-image"></a>
-                    </div>
-                </li>
-                <li>
-                    Kashi Khand (This is also a part of Skanda Purana which is written by Shri Ved Vyas)
-                    <div class="book-images">
-                        <a href="KashiKhand1.png" target="_blank"><img src="KashiKhand1.png" alt=" Kashi Khand Image 1" class="book-image"></a>
-                    </div>
-                </li>
-        </section>
-        <section id="temples-deities">
-            <h2>Temple's Deities</h2>
-            <h3> Madhusudan Bhagawan Ji </h3>
-            <p>As mentioned above, the same wonderful form of God is present in this temple.</p>
-            <h3>Durga Mata</h3>
-            <p> Durga Mata is also present here who is shown killing Mahishasura. Goddess Durga is present on the left side of Lord Madhusudan</p>
-            <h3>Hiranya Garbheshwar Mahadev</h3>
-            <h4>।। शिवाय विष्णु रूपाय ।। शिव रूपाय विष्णवे ।। शिवस्य हृदयं विष्णुं ।। विष्णोश्च हृदयं शिवः ।। यथा शिवमयो विष्णु ।। रेवं विष्णुमयः शिवः ।। यथाऽन्तरम् न पश्यामि ।। तथा में स्वस्तिरायुषि ।। यथाऽन्तरं न भेदाः स्युः ।। शिवराघवयोस्तथा ।।</h4>
-            <p> Mahadev is present in front of Lord Madhusudan in the temple. Due to which it seems that Shri Madhusudan ji is meditating on Lord Shiva all the time. And Mahadev is meditating on shri bhagawan. And Nandi ji is looking at both of them sitting at the feet of Lord Shankar.</p>
-            <h3>Hanuman Ji</h3>
-            <p>Hanumanji is also present in the temple premises who is covered in vermilion(sindhur).</p>
-            <h3>Ganesh Ji</h3>
-            <p>Ganesh Ji is also present in the temple premises. As we all know that Ganesh Ji is worshipped first to make any worship successful, so here in the temple premises there are two idols of Ganesh Ji which are shown looking at each other.</p>
-            <h3>Surya Dev</h3>
-            <p>Surya Dev is present on the right side of Hanumanji in the temple premises.</p>
-            <h3>Lakshami Narayan</h3>
-            <p>Lakshmi Narayana is present on the left side of Hanuman Ji in the temple premises.</p>
-            <h3>Narmadeswar Mahadev</h3>
-            <p>As described, Narmadeswar Shivling is the best among the types of Shivling. Which is present here.</p>
-
-        </section>
-        <section id="gallery" class="fade-in-on-scroll"> <h2>Gallery</h2> <div class="gallery-images"> <a data-fancybox="gallery" href="bhagawanji1.jpg"><img src="bhagawanji1.jpg" alt="Gallery Image 1"></a> <a data-fancybox="gallery" href="bhagawanji2.jpg"><img src="bhagawanji2.jpg" alt="Gallery Image 2"></a> <a data-fancybox="gallery" href="bhagawanji3.jpg"><img src="bhagawanji3.jpg" alt="Gallery Image 3"></a> <a data-fancybox="gallery" href="bhagawanji4.jpg"><img src="bhagawanji4.jpg" alt="Gallery Image 4"></a> <a data-fancybox="gallery" href="bhagawanji5.jpg"><img src="bhagawanji5.jpg" alt="Gallery Image 5"></a> <a data-fancybox="gallery" href="bhagawanji6.jpg"><img src="bhagawanji6.jpg" alt="Gallery Image 6"></a> <a data-fancybox="gallery" href="bhagawanji7.jpg"><img src="bhagawanji7.jpg" alt="Gallery Image 7"></a> <a data-fancybox="gallery" href="bhagawanji8.jpg"><img src="bhagawanji8.jpg" alt="Gallery Image 8"></a> <a data-fancybox="gallery" href="bhagawanji9.jpg"><img src="bhagawanji9.jpg" alt="Gallery Image 9"></a> <a data-fancybox="gallery" href="bhagawanji10.jpg"><img src="bhagawanji10.jpg" alt="Gallery Image 10"></a> <a data-fancybox="gallery" href="bhagawanji11.jpg"><img src="bhagawanji11.jpg" alt="Gallery Image 11"></a> <a data-fancybox="gallery" href="bhagawanji12.jpg"><img src="bhagawanji12.jpg" alt="Gallery Image 12"></a> <a data-fancybox="gallery" href="bhagawanji13.jpg"><img src="bhagawanji13.jpg" alt="Gallery Image 13"></a> <a data-fancybox="gallery" href="bhagawanji14.jpg"><img src="bhagawanji14.jpg" alt="Gallery Image 14"></a> <a data-fancybox="gallery" href="bhagawanji15.jpg"><img src="bhagawanji15.jpg" alt="Gallery Image 15"></a> <a data-fancybox="gallery" href="bhagawanji16.jpg"><img src="bhagawanji16.jpg" alt="Gallery Image 16"></a> <a data-fancybox="gallery" href="bhagawanji17.jpg"><img src="bhagawanji17.jpg" alt="Gallery Image 17"></a> <a data-fancybox="gallery" href="bhagawanji18.jpg"><img src="bhagawanji18.jpg" alt="Gallery Image 18"></a>
-                <a data-fancybox="gallery" href="bhagawanj191.jpg"><img src="bhagawanji19.jpg" alt="Gallery Image 19"></a>
-              
-                    <figure>
-                        <a data-fancybox="gallery" href="madhusudan.jpg"><img src="madhusudan.jpg" alt="Madhusudan Bhagwan"></a>
-                        <figcaption>MADHUSUDAN BHAGAWAN</figcaption>
-                    </figure>
-                    <figure>
-                        <a data-fancybox="gallery" href="durga.jpg"><img src="durga.jpg" alt="Durga Mata"></a>
-                        <figcaption>DURGA MATA</figcaption>
-                    </figure>
-                    <figure>
-                        <a data-fancybox="gallery" href="hiranya_garbheswar.jpg"><img src="hiranya_garbheswar.jpg" alt="Hiranya Garbheswar Mahadev"></a>
-                        <figcaption>HIRANYA GARBHESWAR MAHADEV</figcaption>
-                    </figure>
-                    <figure>
-                        <a data-fancybox="gallery" href="hanuman.jpg"><img src="hanuman.jpg" alt="Hanuman Ji"></a>
-                        <figcaption>HANUMAN JI</figcaption>
-                    </figure>
-                    <figure>
-                        <a data-fancybox="gallery" href="ganesh.jpg"><img src="ganesh.jpg" alt="Ganesh Ji"></a>
-                        <figcaption>GANESH JI</figcaption>
-                    </figure>
-                    <figure>
-                        <a data-fancybox="gallery" href="surya.jpg"><img src="surya.jpg" alt="Surya Dev"></a>
-                        <figcaption>SURYA DEV</figcaption>
-                    </figure>
-                    <figure>
-                        <a data-fancybox="gallery" href="lakshmi_narayan.jpg"><img src="lakshmi_narayan.jpg" alt="Lakshmi Narayan"></a>
-                        <figcaption>LAKSHAMI NARAYAN</figcaption>
-                    </figure>
-                    <figure>
-                        <a data-fancybox="gallery" href="narmadeshwar.jpg"><img src="narmadeshwar.jpg" alt="Narmadeshwar Mahadev"></a>
-                        <figcaption>NARMADESWAR MAHADEV</figcaption>
-                    </figure> </div> </section>
-        <section id="contact" class="fade-in-on-scroll">
-    <h2>Contact Us</h2>
-    <div class="contact-container">
-        <div class="contact-info">
-            <p><strong>Address:</strong> A.2/29, Shri Madhusudan Bhagwan Temple, Situated Mohalla Kameshwar Mahadev, Above Trilochan Ghat, Ayodhya Kothi, Post: Gai Ghat, Varanasi, Uttar Pradesh, India 221001</p>
-            <p><strong>Pujarigan:</strong></p>
-            <ul>
-                <li>Rudra Nath Mishra: <a href="tel:+91 8009365254">+91 80093 65254</a> </li>
-                <li>Santosh Kumar Mishra: <a href="tel:+91 7355349270">+91 73553 49270</a></li>
-                <li>Rangnath Mishra: <a href="tel:+91 9305218031">+91 93052 18031</a> </li>
-            </ul>
-            <a href="https://www.google.com/maps/place/Shri+Vaman+Keshav+(Madhusudan)+Temple+-+Kashi+Khand/@25.3196626,83.0202562,17z/data=!3m1!4b1!4m6!3m5!1s0x398e2e2529ce2ba3:0xdd158ad5d9d4ff06!8m2!3d25.3196578!4d83.0228311!16s%2Fg%2F11c0rqr2m0?entry=ttu&g_ep=EgoyMDI0MTIwNC4wIKXMDSoASAFQAw%3D%3D" target="_blank">
-                <img src="map-icon.jpg" alt="Map Icon" style="width: 50px; height: 50px; vertical-align: middle;"> Get Directions
-            </a>
         </div>
-    </div>
-</section>
+        <div id="mobile-menu" class="hidden lg:hidden px-4 pt-2 pb-4 space-y-2 bg-[#e65500] relative z-10 border-t border-white/20">
+            <a href="#home" class="block py-2 text-center text-lg hover:text-black transition-colors duration-300" data-translate="nav_home">Home</a>
+            <a href="#about" class="block py-2 text-center text-lg hover:text-black transition-colors duration-300" data-translate="nav_about">About</a>
+            <a href="#deities" class="block py-2 text-center text-lg hover:text-black transition-colors duration-300" data-translate="nav_deities">Temple's Deities</a>
+            <a href="#gallery" class="block py-2 text-center text-lg hover:text-black transition-colors duration-300" data-translate="nav_gallery">Gallery</a>
+            <a href="#contact" class="block py-2 text-center text-lg hover:text-black transition-colors duration-300" data-translate="nav_contact">Contact</a>
+        </div>
+    </header>
 
+    <main id="main-content">
 
+        <section id="home" class="pt-10 pb-4 px-4">
+            <div class="mx-auto max-w-[800px] bg-[#f9f9f9] rounded-[10px] custom-shadow p-8 text-center fade-in-up border border-gray-200">
+                <h2 class="font-['Dancing_Script'] text-[#880e4f] text-3xl sm:text-4xl font-bold mb-4" data-translate="welcome_title">Welcome to Shree Madhusudan Bhagwan Ji Temple</h2>
+                <p class="font-sans text-[#333] text-lg sm:text-xl leading-relaxed" data-translate="welcome_shloka">मधुसूदनो वीरः विष्णुर्वीथीपतिः प्रभुः। श्रीधरः श्रीपतिः श्रीमान् श्रीनिवासः श्रीनिधिः श्रीविभावनः॥</p>
+            </div>
+        </section>
 
+        <section id="about" class="py-12 fade-in-up relative">
+            <div class="absolute inset-0 bg-[url('img.jpg')] bg-cover bg-center"></div>
+            <div class="absolute inset-0 bg-[#FF6600]/50"></div>
+            
+            <div class="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10">
+                    <h2 class="text-4xl font-bold text-[#FF6600]" style="font-family: 'Californian FB', serif; text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.7);" data-translate="about_title">Overview</h2>
+                </div>
+                
+                <div class="flex flex-col lg:flex-row items-stretch bg-black/50 rounded-lg overflow-hidden custom-shadow max-w-6xl mx-auto">
+                    <div class="lg:w-1/2 p-6 sm:p-10 flex flex-col justify-center">
+                        <div data-translate="about_content" class="text-white text-justify space-y-4 text-xl">
+                            </div>
+                    </div>
+                    <div class="lg:w-1/2 relative min-h-[350px]">
+                        <img src="Temple2.jpg" alt="Temple Exterior" class="absolute inset-0 w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about-detailed" class="py-12 fade-in-up">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-[900px] mx-auto bg-white/90 bg-[#FF6600]/10 custom-shadow rounded-lg p-8 sm:p-12 border border-[#FF6600]/20">
+                    <div class="text-center mb-10">
+                        <h2 class="text-3xl font-bold text-gray-800 border-b-2 border-[#FF6600] inline-block pb-2" data-translate="nav_about">About</h2>
+                    </div>
+
+                    <div class="space-y-12">
+                        <div data-translate="details_swaroop"></div>
+                        <div class="flex justify-center mt-6">
+                            <img src="Swaroop.jpg" alt="Swaroop" class="rounded-lg custom-shadow max-w-sm w-full">
+                        </div>
+                        <div data-translate="details_story"></div>
+                        <div data-translate="details_references" class="mt-16"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="deities" class="py-12 fade-in-up">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-[1000px] mx-auto bg-[#f9f9f9] custom-shadow rounded-lg p-8 sm:p-12 text-center border border-gray-200">
+                    <h2 class="font-['Dancing_Script'] text-[#880e4f] text-3xl sm:text-4xl font-bold mb-10" data-translate="deities_title">Temple's Deities</h2>
+                    
+                    <div id="deities-grid" class="flex flex-wrap justify-center gap-10">
+                        </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="py-12 fade-in-up">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-[900px] mx-auto bg-white/90 bg-[#FF6600]/10 custom-shadow rounded-lg p-8 sm:p-12 text-center border border-[#FF6600]/20">
+                    <h2 class="text-3xl font-bold text-gray-800 border-b-2 border-[#FF6600] inline-block pb-2 mb-10" data-translate="gallery_title">Gallery</h2>
+                    
+                    <div id="gallery-grid" class="flex flex-wrap justify-center gap-4">
+                        </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-12 fade-in-up">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-[900px] mx-auto bg-white/90 bg-[#FF6600]/10 custom-shadow rounded-lg p-8 sm:p-12 text-center border border-[#FF6600]/20">
+                    <h2 class="text-3xl font-bold text-gray-800 border-b-2 border-[#FF6600] inline-block pb-2 mb-10" data-translate="contact_title">Contact Us</h2>
+                    
+                    <div class="flex flex-col md:flex-row justify-between items-start text-left gap-8 text-lg">
+                        <div class="flex-1 space-y-4">
+                            <p><strong class="font-bold">Address:</strong> <span data-translate="contact_address" class="block mt-1"></span></p>
+                            <div>
+                                <p><strong class="font-bold" data-translate="contact_pujari_label">Pujarigan:</strong></p>
+                                <ul class="list-none mt-2 space-y-2">
+                                    <li data-translate="contact_pujari1"></li>
+                                    <li data-translate="contact_pujari2"></li>
+                                    <li data-translate="contact_pujari3"></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="flex-1 flex justify-center md:justify-end">
+                            <a href="https://www.google.com/maps/place/Shri+Vaman+Keshav+(Madhusudan)+Temple+-+Kashi+Khand/@25.3196626,83.0202562,17z/data=!3m1!4b1!4m6!3m5!1s0x398e2e2529ce2ba3:0xdd158ad5d9d4ff06!8m2!3d25.3196578!4d83.0228311!16s%2Fg%2F11c0rqr2m0?entry=ttu&g_ep=EgoyMDI0MTIwNC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="inline-flex items-center text-[#FF6600] hover:text-[#e65500] font-bold text-xl transition-colors">
+                                <img src="map-icon.jpg" alt="Map" class="w-12 h-12 mr-3 rounded-full custom-shadow">
+                                <span data-translate="btn_directions">Get Directions</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
-    
 
-    <footer>
-        <p>Website designed by <strong>Swarnim Mishra</strong></p>
+    <footer class="bg-[#FF6600] text-white py-6 mt-8 shadow-[0_-4px_8px_rgba(0,0,0,0.1)]">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-lg" data-translate="footer_text">Website designed by <strong>Swarnim Mishra</strong></p>
+        </div>
     </footer>
 
+    <div id="deity-modal-overlay"></div>
 
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- DEITY DATA MAP ---
+            const deityData = {
+                en: [
+                    { id: 'madhusudan', name: 'Madhusudan Bhagwan Ji', img: 'madhusudan.jpg', color: '#FF6700', description: `<p>As mentioned above, the same wonderful form of God is present in this temple.</p>` },
+                    { id: 'durga', name: 'Durga Mata', img: 'durga.jpg', color: '#FFC107', description: `<p>Durga Mata is also present here who is shown killing Mahishasura. Goddess Durga is present on the left side of Lord Madhusudan.</p>` },
+                    { id: 'hiranya', name: 'Hiranya Garbheshwar Mahadev', img: 'hiranya_garbheswar.jpg', color: '#8C3B00', description: `<h4 class="font-bold mb-2">।। शिवाय विष्णु रूपाय ।। शिव रूपाय विष्णवे ।। शिवस्य हृदयं विष्णुं ।। विष्णोश्च हृदयं शिवः ।। यथा शिवमयो विष्णु ।। रेवं विष्णुमयः शिवः ।। यथाऽन्तरम् न पश्यामि ।। तथा में स्वस्तिरायुषि ।। यथाऽन्तरं न भेदाः स्युः ।। शिवराघवयोस्तथा ।।</h4><p>Mahadev is present in front of Lord Madhusudan in the temple. Due to which it seems that Shri Madhusudan ji is meditating on Lord Shiva all the time. And Mahadev is meditating on shri bhagawan. And Nandi ji is looking at both of them sitting at the feet of Lord Shankar.</p>` },
+                    { id: 'hanuman', name: 'Hanuman Ji', img: 'hanuman.jpg', color: '#E53935', description: `<p>Hanumanji is also present in the temple premises who is covered in vermilion(sindhur).</p>` },
+                    { id: 'ganesh', name: 'Ganesh Ji', img: 'ganesh.jpg', color: '#43A047', description: `<p>Ganesh Ji is also present in the temple premises. As we all know that Ganesh Ji is worshipped first to make any worship successful, so here in the temple premises there are two idols of Ganesh Ji which are shown looking at each other.</p>` },
+                    { id: 'surya', name: 'Surya Dev', img: 'surya.jpg', color: '#FB8C00', description: `<p>Surya Dev is present on the right side of Hanumanji in the temple premises.</p>` },
+                    { id: 'lakshmi', name: 'Lakshami Narayan', img: 'lakshmi_narayan.jpg', color: '#D81B60', description: `<p>Lakshmi Narayana is present on the left side of Hanuman Ji in the temple premises.</p>` },
+                    { id: 'narmadeshwar', name: 'Narmadeswar Mahadev', img: 'narmadeshwar.jpg', color: '#546E7A', description: `<p>As described, Narmadeswar Shivling is the best among the types of Shivling. Which is present here.</p>` }
+                ],
+                hi: [
+                    { id: 'madhusudan', name: 'मधुसूदन भगवान जी', img: 'madhusudan.jpg', color: '#FF6700', description: `<p>जैसा कि ऊपर बताया गया है, भगवान का वही अद्भुत रूप इस मंदिर में विद्यमान है.</p>` },
+                    { id: 'durga', name: 'दुर्गा माता', img: 'durga.jpg', color: '#FFC107', description: `<p>मंदिर मे दुर्गा माता महिषासुर मर्दनी के रूप मे विद्यमान है। देवी दुर्गा भगवान मधुसूदन के बाईं ओर हैं</p>` },
+                    { id: 'hiranya', name: 'हिरण्य गर्भेश्वर महादेव', img: 'hiranya_garbheswar.jpg', color: '#8C3B00', description: `<h4 class="font-bold mb-2">।। शिवाय विष्णु रूपाय ।। शिव रूपाय विष्णवे ।। शिवस्य हृदयं विष्णुं ।। विष्णोश्च हृदयं शिवः ।। यथा शिवमयो विष्णु ।। रेवं विष्णुमयः शिवः ।। यथाऽन्तरम् न पश्यामि ।। तथा में स्वस्तिरायुषि ।। यथाऽन्तरं न भेदाः स्युः ।। शिवराघवयोस्तथा ।।</h4><p>मंदिर में भगवान मधुसूदन के सामने हिरण्य गर्भेश्वर महादेव विराजमान हैं। जिससे ऐसा प्रतीत होता है कि श्री मधुसूदन जी हर समय भगवान शिव का ध्यान कर रहे हैं। और शिव जी मधुसूदन भगवान का ध्यान कर रहे हैं। और नंदी जी भगवान शंकर के समीप बैठकर देख रहे हैं।</p>` },
+                    { id: 'hanuman', name: 'हनुमान जी', img: 'hanuman.jpg', color: '#E53935', description: `<p>मंदिर परिसर में हनुमानजी भी मौजूद हैं जो सिंदूर से ढके हुए हैं।</p>` },
+                    { id: 'ganesh', name: 'गणेश जी', img: 'ganesh.jpg', color: '#43A047', description: `<p>मंदिर परिसर में गणेश जी भी विराजमान हैं। जैसा कि हम सभी जानते हैं कि किसी भी पूजा को सफल बनाने के लिए सबसे पहले गणेश जी की पूजा की जाती है, इसलिए यहां मंदिर परिसर में गणेश जी की दो मूर्तियां हैं जिन्हें एक दूसरे की ओर देखते हुए दिखाया गया है।</p>` },
+                    { id: 'surya', name: 'सूर्य देव', img: 'surya.jpg', color: '#FB8C00', description: `<p>मंदिर परिसर मे हनुमान जी के दाई ओर सूर्य देव विद्यमान है।</p>` },
+                    { id: 'lakshmi', name: 'लक्ष्मी नारायण', img: 'lakshmi_narayan.jpg', color: '#D81B60', description: `<p>मंदिर परिसर मे हनुमान जी के बाई ओर लक्ष्मी नारायण विद्यमान है।</p>` },
+                    { id: 'narmadeshwar', name: 'नर्मदेश्वर महादेव', img: 'narmadeshwar.jpg', color: '#546E7A', description: `<p>जैसा की वर्णित है की शिवलिंग के प्रकार मे नर्मदेसवार शिवलिंग सर्वोत्तम है। जो की यहा विद्यमान है।</p>` }
+                ]
+            };
+
+            // --- EXACT TRANSLATIONS MAP ---
+            const translations = {
+                en: {
+                    title: "Shree Shree Shree 1008 Madhusudan Bhagwan Ji", nav_home: "Home", nav_about: "About", nav_deities: "Temple's Deities", nav_gallery: "Gallery", nav_contact: "Contact", 
+                    welcome_title: "Welcome to Shree Madhusudan Bhagwan Ji Temple", 
+                    welcome_shloka: "मधुसूदनो वीरः विष्णुर्वीथीपतिः प्रभुः। श्रीधरः श्रीपतिः श्रीमान् श्रीनिवासः श्रीनिधिः श्रीविभावनः॥", 
+                    about_title: "Overview", 
+                    about_content: `<p>Shri Madhusudan Bhagwan Temple in Kashi is a kashi khandokat temple, dedicated to Lord Vishnu, and is believed to be self-manifested (Swayambhu). There is no documented origin of this temple, and the present priests are descendants of the Shakaladweepi Brahmins who have traditionally served and worshipped here.</p><br><p>In later times, Maharaja Daduva, the former king of Ayodhya, established a Narmadeshwar Mahadev of crystal in his estate, in front of the same Madhusudan Bhagwan. He also renovated the Madhusudan Bhagwan Temple and appointed Dhanesh Mishra, who was already a priest of Madhusudan Bhagwan, as the priest of Narmadeshwar Mahadev.</p><br><p>Madhusudan Bhagwan is also known as Vaman Keshav, and it is believed that visiting Madhusudan Bhagwan (Vaman Keshav) during the month of Vaishakh brings immense spiritual merit, fulfillment of desires, and accomplishments. The deity prefers offerings of butter and sugar, and garlands of fragrant Vaijayanti flowers. During the Adhik Maas (extra month in the Hindu calendar), the deity is also offered Malpua. The special significance of this deity is mentioned in the Vaishakh Mahatmya (authored by Vedavyasa). Traditional rituals involve worshipping trees in the temple and listening to Kathas (stories) during the month of Vaishakh. Lamps with five wicks are lit between Ekadashi and Purnima, and on Chaturdashi, the deity is bathed with Panchamrit.</p><br><p>The temple of Madhusudan Bhagwan in Kashi is situated in the Kameshwar Mahadev locality, above the Trilochan Ghat, in Ayodhya Kothi. Every year, during the month of Vaishakh, a large number of devotees visit this temple, mesmerized by its spiritual aura and grace.</p>`, 
+                    details_swaroop: `<h3 class="text-2xl font-bold text-[#bf360c] mb-4" style="font-family: 'Arial', sans-serif;">Swaroop</h3><p class="text-xl text-gray-700 leading-relaxed">The idol of the Lord is carved on a black rock and is in Chaturbhuj (four-armed) form and has a gada in his lower left hand and a lotus bud on its stalk in his upper left hand and a Sankh in his lower right hand and a chakra in his upper right hand. Chaamardhar figures are carved on both sides of the idol.<br>His (Madhusudan Ji) face is fleshy, his nose is pointed, his eyes have brows, his lips are thin, he has a crown of five feathers on his head, round ear rings with a pointed chin, small and large bead necklaces, arm bands, armlets, he wears a garland of flowers down to his knees and a Vaishnav Tilak, he wears a pleated dhoti, and he stands in the Abhaya and Ward Mudra wearing wooden sandals.</p>`, 
+                    details_story: `<h3 class="text-2xl font-bold text-[#bf360c] mb-4" style="font-family: 'Arial', sans-serif;">Story Associated with Name</h3><p class="text-xl text-gray-700 leading-relaxed">Madhusudan is an important name of Lord Krishna. He got this name because he killed Madhu, an ancient demon enemy. A demon named Madhu had started troubling the Devs. He had received a boon from Brahma Dev that only a bhagawan could kill him. Madhu, with his power, drove the devs out of heaven and took over the heaven. The devs sought a solution to this problem from Brahma Dev. Brahma Dev told them that to kill Madhu, they would have to take the incarnation of Lord Vishnu. That is why, Lord Vishnu took the Vamana avatar to kill Madhu. When the Vamana avatar killed Madhu, Lord Vishnu came to be known as Madhusudan. Later, when Lord Vishnu incarnated as Lord Krishna, this name got attached to him. Thats why Vaman Keshav Known as Madhushudan.</p>`, 
+                    details_references: `
+                        <h3 class="text-2xl font-bold text-[#bf360c] mb-4" style="font-family: 'Arial', sans-serif;">References of Madhushudan Bhagawan in Reputed Books</h3>
+                        <p class="text-xl text-gray-700 leading-relaxed mb-6">Description of Lord Madhusudan is found in many cultural books, Vedas and novels, but at this time we are talking about Lord Madhusudan (Vaman Keshav) who is situated in Varanasi. As we know that the city of Kashi is the abode of gods, similarly Lord Vishnu is also present here in many forms and similarly Lord Madhusudan also resides here, Which is located in Ayodhya Kothi in Kameshwar Mahadev locality above Trilochan Ghat. His mention is also found in many books and government documents, some of them are given below:</p>
+                        <ul class="list-disc pl-6 text-xl text-gray-700 space-y-8">
+                            <li>
+                                <strong>Vaishakh Mahattam</strong> (This is a part of Skanda Purana which is written by Shri Veda Vyas)
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+                                    <a data-fancybox="gallery" href="VaishakhMahattam1.jpg"><img src="VaishakhMahattam1.jpg" class="custom-shadow rounded-lg w-full h-48 object-cover book-img-hover" alt="Book Image"></a>
+                                    <a data-fancybox="gallery" href="VaishakhMahattam2.jpg"><img src="VaishakhMahattam2.jpg" class="custom-shadow rounded-lg w-full h-48 object-cover book-img-hover" alt="Book Image"></a>
+                                </div>
+                            </li>
+                            <li>
+                                <strong>"Kashi Ke Mandir Aur Murtiya"</strong> (Written by Dr. Kamal Giri, Dr. Maruti Nandan Tiwari and Dr. Vijay Prakash Singh and this book has been published by District Cultural Committee, Varanasi which is under the Cultural Department of Uttar Pradesh)
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+                                    <a data-fancybox="gallery" href="KashiKeMandirAurMurtiya1.jpg"><img src="KashiKeMandirAurMurtiya1.jpg" class="custom-shadow rounded-lg w-full h-48 object-cover book-img-hover" alt="Book Image"></a>
+                                    <a data-fancybox="gallery" href="KashiKeMandirAurMurtiya2.jpg"><img src="KashiKeMandirAurMurtiya2.jpg" class="custom-shadow rounded-lg w-full h-48 object-cover book-img-hover" alt="Book Image"></a>
+                                    <a data-fancybox="gallery" href="KashiKeMandirAurMurtiya3.jpg"><img src="KashiKeMandirAurMurtiya3.jpg" class="custom-shadow rounded-lg w-full h-48 object-cover book-img-hover" alt="Book Image"></a>
+                                    <a data-fancybox="gallery" href="KashiKeMandirAurMurtiya4.jpg"><img src="KashiKeMandirAurMurtiya4.jpg" class="custom-shadow rounded-lg w-full h-48 object-cover book-img-hover" alt="Book Image"></a>
+                                </div>
+                            </li>
+                            <li>
+                                <strong>"Varanasi ka Pradhidevik Vaibhav"</strong> (published by Kubernath Sukul, Kalbhairav ​​Varanasi)
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+                                    <a data-fancybox="gallery" href="VaranasiKaPradhidevikVaibhav1.jpg"><img src="VaranasiKaPradhidevikVaibhav1.jpg" class="custom-shadow rounded-lg w-full h-48 object-cover book-img-hover" alt="Book Image"></a>
+                                    <a data-fancybox="gallery" href="VaranasiKaPradhidevikVaibhav2.jpg"><img src="VaranasiKaPradhidevikVaibhav2.jpg" class="custom-shadow rounded-lg w-full h-48 object-cover book-img-hover" alt="Book Image"></a>
+                                </div>
+                            </li>
+                            <li>
+                                <strong>Kashi Khand</strong> (This is also a part of Skanda Purana which is written by Shri Ved Vyas)
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+                                    <a data-fancybox="gallery" href="KashiKhand1.png"><img src="KashiKhand1.png" class="custom-shadow rounded-lg w-full h-48 object-cover book-img-hover" alt="Book Image"></a>
+                                </div>
+                            </li>
+                        </ul>`, 
+                    deities_title: "Temple's Deities", gallery_title: "Gallery", contact_title: "Contact Us", 
+                    contact_address_label: "Address:", contact_address: "A.2/29, Shri Madhusudan Bhagwan Temple, Situated Mohalla Kameshwar Mahadev, Above Trilochan Ghat, Ayodhya Kothi, Post: Gai Ghat, Varanasi, Uttar Pradesh, India 221001", 
+                    contact_pujari_label: "Pujarigan:", 
+                    contact_pujari1: `Rudra Nath Mishra: <a href="tel:+918009365254" class="text-[#FF6600] hover:underline">+91 80093 65254</a>`, 
+                    contact_pujari2: `Santosh Kumar Mishra: <a href="tel:+917355349270" class="text-[#FF6600] hover:underline">+91 73553 49270</a>`, 
+                    contact_pujari3: `Rangnath Mishra: <a href="tel:+919305218031" class="text-[#FF6600] hover:underline">+91 93052 18031</a>`, 
+                    btn_directions: "Get Directions", footer_text: "Website designed by <strong>Swarnim Mishra</strong>"
+                },
+                hi: {
+                    title: "श्री श्री श्री १००८ मधुसूदन भगवान", nav_home: "होम", nav_about: "परिचय", nav_deities: "मंदिर के देवतागण", nav_gallery: "चित्रशाला", nav_contact: "संपर्क", 
+                    welcome_title: "श्री मधुसूदन भगवान जी मंदिर में आपका स्वागत है", 
+                    welcome_shloka: "मधुसूदनो वीरः विष्णुर्वीथीपतिः प्रभुः। श्रीधरः श्रीपतिः श्रीमान् श्रीनिवासः श्रीनिधिः श्रीविभावनः॥", 
+                    about_title: "अवलोकन", 
+                    about_content: `<p>श्री मधुसूदन भगवान जी मंदिर काशी खंडोक्त मंदिर है, जो श्री विष्णु जी का स्वरूप है और किसी के द्वारा स्थापित नहीं किया गया है, यह स्वयंभू है, इनकी उत्पत्ति के बारे में कोई जानकारी नहीं है और शाकलद्वीपी ब्राहमन जो वर्तमान मे पुजारी है उन्ही के पूर्वज इनकी सेवा,पूजा करते रहे थे।</p><br><p>कालांतर मे अयोध्या के पूर्व राजा ददुआ महाराज इन्ही मधुसूदन भगवान जी  के सामने स्फटिक के नर्मदेश्वर महादेव की अपने कोठी मे स्थापना की। और मधुसूदन भगवान जी का भी जीर्णोद्धार कराया। और धनेश मिश्र को ही नर्मदेश्वर महादेव का पुजारी नियुक्त किया। जो ( धनेश मिश्र) की मधुसूदन भगवान जी के पुजारी थे।</p><br><p>मधुसूदन भगवान जी को वामन  केशव के नाम से भी जाना जाता है और वैशाख माह में मधुसूदन भगवान (वामन  केशव) के दर्शन करने से करोड़ों प्रकार के पुण्य अर्जित होते हैं, मनोवांछित फल की प्राप्ति होती है, मनोकामनाएं पूरी होती हैं। भगवान को माखन मिश्री का नैवेद्य प्रिय है, वैजयंती पुष्प की सुगंधित माला उन्हें प्रिय है, अधिक मास में उन्हें मालपुआ का भी भोग लगाया जाता है। वैशाख महातम (वेदव्यास द्वारा रचित) में इनका विशेष वर्णन है। वैशाख माह मे परंपरागत तरीकों  से मंदिर में वृक्षों की पूजा कर कथा श्रवण की जाती है और एकादशी से पूर्णिमा के बीच मे पाँच तग्गी बत्ती वाले घी के दीपक  जलाए जाते है। तथा चतुर्दशी के दिन पंचामृत से स्नान कराया जाता है।</p><br><p>काशी में भगवान मधुसूदन का मंदिर कामेश्वर महादेव मोहल्ले में त्रिलोचन घाट के ऊपर अयोध्या  कोठी मे स्थित है और हर साल वैशाख महीने में भारी संख्या में श्रद्धालु यहां आते हैं और दर्शन कर मंत्रमुग्ध हो जाते हैं।</p>`, 
+                    details_swaroop: `<h3 class="text-2xl font-bold text-[#bf360c] mb-4" style="font-family: 'Arial', sans-serif;">स्वरूप</h3><p class="text-xl text-gray-700 leading-relaxed">भगवान जी की मूर्ति एक काले पत्थर पर बनी है और चतुर्भुज (चार भुजाओं वाले) रूप में है और उनके निचले बाएं हाँथ  में गदा और ऊपरी बाएं हाँथ में कमल की कली और उनके निचले दाहिने हाँथ  में शंख और ऊपरी दाहिने हाँथ  में चक्र है। मूर्ति के दोनों ओर चामरधर आकृतियाँ उकेरी हुई हैं।<br>उनका (मधुसूदन जी) चेहरा मांसल है, उनकी नाक नुकीली है, उनकी आँखों में भौहें हैं, उनके होंठ पतले हैं, उनके सिर पर पाँच पंखों का मुकुट है, नुकीली ठोड़ी के साथ गोल बालियाँ, छोटे और बड़े मोतियों की माला, बाजूबंद, वे घुटनों तक फूलों की माला और वैष्णव तिलक पहनते हैं, वे मढ़वाया (प्लेटेड) धोती पहनते हैं, और वे खड़ाऊ पहने हुए अभय मुद्रा में खड़े हैं।</p>`, 
+                    details_story: `<h3 class="text-2xl font-bold text-[#bf360c] mb-4" style="font-family: 'Arial', sans-serif;">नाम से जुड़ी कहानी</h3><p class="text-xl text-gray-700 leading-relaxed">मधुसूदन भगवान कृष्ण का एक महत्वपूर्ण नाम है। उन्हें यह नाम इसलिए मिला क्योंकि उन्होंने मधु नामक प्राचीन दैत्य शत्रु का वध किया था। मधु नामक दैत्य ने देवताओं को परेशान करना शुरू कर दिया था। उसे ब्रह्मा से वरदान प्राप्त था कि उसे केवल भगवान ही मार सकते हैं। मधु ने अपनी शक्ति से देवताओं को स्वर्ग से बाहर निकाल दिया और स्वर्ग पर अधिकार कर लिया। देवताओं ने ब्रह्मा से इस समस्या का समाधान मांगा। ब्रह्मा ने उन्हें बताया कि मधु को मारने के लिए स्वयं भगवान विष्णु को अवतार लेना होगा। इसीलिए भगवान विष्णु ने मधु का वध करने के लिए वामन अवतार लिया। जब वामन अवतार ने मधु का वध किया तो भगवान विष्णु, मधुसूदन कहलाए। बाद में जब भगवान विष्णु ने भगवान कृष्ण के रूप में अवतार लिया तो यह नाम उनके साथ जुड़ गया। इसीलिए वामन केशव मधुसूदन के नाम से जाने जाते हैं।</p>`, 
+                    details_references: `
+                        <h3 class="text-2xl font-bold text-[#bf360c] mb-4" style="font-family: 'Arial', sans-serif;">प्रतिष्ठित पुस्तकों में मधुसूदन भगवान के सन्दर्भ</h3>
+                        <p class="text-xl text-gray-700 leading-relaxed mb-6">भगवान मधुसूदन का वर्णन कई सांस्कृतिक धार्मिक पुस्तकों, वेदों और उपन्यासों में मिलता है, लेकिन इस समय हम बात कर रहे हैं भगवान मधुसूदन (वामन केशव) की जो वाराणसी में विराजमान हैं। जैसा कि हम जानते हैं कि काशी नगरी देवताओं का निवास स्थान है, उसी प्रकार भगवान विष्णु भी यहाँ अनेक रूपों में विद्यमान हैं और इसी प्रकार भगवान मधुसूदन भी यहाँ विराजमान हैं, जो त्रिलोचन घाट के ऊपर कामेश्वर महादेव मोहल्ले के अयोध्या कोठी मे स्थित हैं। उनका उल्लेख कई पुस्तकों और सरकारी दस्तावेजों में भी मिलता है, उनमें से कुछ नीचे दिए गए हैं:</p>
+                        <ul class="list-disc pl-6 text-xl text-gray-700 space-y-8">
+                            <li>
+                                <strong>वैशाख महात्तम</strong> (यह स्कंद पुराण का एक भाग है जो श्री वेद व्यास द्वारा लिखा गया है)
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+                                    <a data-fancybox="gallery" href="VaishakhMahattam1.jpg"><img src="VaishakhMahattam1.jpg" class="custom-shadow rounded-lg w-full h-48 object-cover book-img-hover" alt="Book Image"></a>
+                                    <a data-fancybox="gallery" href="VaishakhMahattam2.jpg"><img src="VaishakhMahattam2.jpg" class="custom-shadow rounded-lg w-full h-48 object-cover book-img-hover" alt="Book Image"></a>
+                                </div>
+                            </li>
+                            <li>
+                                <strong>काशी के मंदिर और मूर्तियां</strong> (डॉ. कमल गिरि, डॉ. मारुति नंदन तिवारी और डॉ. विजय प्रकाश सिंह द्वारा लिखित और यह पुस्तक जिला सांस्कृतिक समिति, वाराणसी द्वारा प्रकाशित की गई है जो उत्तर प्रदेश के सांस्कृतिक विभाग के अधीन है)
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+                                    <a data-fancybox="gallery" href="KashiKeMandirAurMurtiya1.jpg"><img src="KashiKeMandirAurMurtiya1.jpg" class="custom-shadow rounded-lg w-full h-48 object-cover book-img-hover" alt="Book Image"></a>
+                                    <a data-fancybox="gallery" href="KashiKeMandirAurMurtiya2.jpg"><img src="KashiKeMandirAurMurtiya2.jpg" class="custom-shadow rounded-lg w-full h-48 object-cover book-img-hover" alt="Book Image"></a>
+                                    <a data-fancybox="gallery" href="KashiKeMandirAurMurtiya3.jpg"><img src="KashiKeMandirAurMurtiya3.jpg" class="custom-shadow rounded-lg w-full h-48 object-cover book-img-hover" alt="Book Image"></a>
+                                    <a data-fancybox="gallery" href="KashiKeMandirAurMurtiya4.jpg"><img src="KashiKeMandirAurMurtiya4.jpg" class="custom-shadow rounded-lg w-full h-48 object-cover book-img-hover" alt="Book Image"></a>
+                                </div>
+                            </li>
+                            <li>
+                                <strong>वाराणसी का प्राधिदैविक वैभव</strong> (कुबेरनाथ सुकुल, कालभैरव वाराणसी द्वारा प्रकाशित)
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+                                    <a data-fancybox="gallery" href="VaranasiKaPradhidevikVaibhav1.jpg"><img src="VaranasiKaPradhidevikVaibhav1.jpg" class="custom-shadow rounded-lg w-full h-48 object-cover book-img-hover" alt="Book Image"></a>
+                                    <a data-fancybox="gallery" href="VaranasiKaPradhidevikVaibhav2.jpg"><img src="VaranasiKaPradhidevikVaibhav2.jpg" class="custom-shadow rounded-lg w-full h-48 object-cover book-img-hover" alt="Book Image"></a>
+                                </div>
+                            </li>
+                            <li>
+                                <strong>काशी खंड</strong> (यह भी स्कंद पुराण का एक भाग है जिसे श्री वेद व्यास ने लिखा है)
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+                                    <a data-fancybox="gallery" href="KashiKhand1.png"><img src="KashiKhand1.png" class="custom-shadow rounded-lg w-full h-48 object-cover book-img-hover" alt="Book Image"></a>
+                                </div>
+                            </li>
+                        </ul>`, 
+                    deities_title: "मंदिर के देवतागण", gallery_title: "चित्रशाला", contact_title: "संपर्क सूत्र", 
+                    contact_address_label: "पता:", contact_address: "ए.2/29, श्री मधुसूदन भगवान मंदिर, स्थित मोहल्ला कामेश्वर महादेव, त्रिलोचन घाट के ऊपर, अयोध्या कोठी, पोस्ट: गाय घाट, वाराणसी, उत्तर प्रदेश, भारत 221001", 
+                    contact_pujari_label: "पुजारीगण:", 
+                    contact_pujari1: `रुद्र नाथ मिश्र: <a href="tel:+918009365254" class="text-[#FF6600] hover:underline">+91 80093 65254</a>`, 
+                    contact_pujari2: `संतोष कुमार मिश्र: <a href="tel:+917355349270" class="text-[#FF6600] hover:underline">+91 73553 49270</a>`, 
+                    contact_pujari3: `रंगनाथ मिश्र: <a href="tel:+919305218031" class="text-[#FF6600] hover:underline">+91 93052 18031</a>`, 
+                    btn_directions: "दिशा - निर्देश", footer_text: "वेबसाइट <strong>स्वर्णिम मिश्रा</strong> द्वारा डिज़ाइन की गई है"
+                }
+            };
+
+            const languageSwitcher = document.getElementById('language-switcher');
+            const translatableElements = document.querySelectorAll('[data-translate]');
+            let currentLang = 'en';
+
+            function populateDeities(lang) {
+                const grid = document.getElementById('deities-grid');
+                grid.innerHTML = '';
+                deityData[lang].forEach(deity => {
+                    // Added a dedicated wrapper class `.deity-card-wrapper` to handle the hover lift & shadow 
+                    const cardHTML = `
+                            <div class="deity-card deity-card-wrapper perspective w-full sm:w-[280px] h-[350px] cursor-pointer group" data-deity-id="${deity.id}">
+                                <div class="deity-card-inner">
+                                    <div class="deity-card-front bg-white custom-shadow text-center p-8 border-t-4" style="border-color: ${deity.color};">
+                                        <img src="${deity.img}" alt="${deity.name}" class="w-28 h-28 mx-auto rounded-full shadow-lg mb-5 border-4 border-white object-cover">
+                                        <h3 class="text-2xl font-bold text-[#880e4f]">${deity.name}</h3>
+                                        <p class="text-gray-500 mt-4 text-md">Click to view details</p>
+                                    </div>
+                                    <div class="deity-card-back">
+                                        <img src="${deity.img}" class="w-full h-1/3 object-cover">
+                                        <div class="p-6 deity-modal-content flex-1 overflow-y-auto">
+                                            <h3 class="text-2xl font-bold text-[#bf360c] mb-3">${deity.name}</h3>
+                                            <div class="text-md text-gray-700 space-y-2 leading-relaxed font-sans">${deity.description}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    grid.innerHTML += cardHTML;
+                });
+                addDeityCardListeners();
+            }
+
+            function populateGallery() {
+                const grid = document.getElementById('gallery-grid');
+                grid.innerHTML = '';
+                
+                const galleryList = [];
+                for (let i = 1; i <= 19; i++) {
+                    galleryList.push(`bhagawanji${i}.jpg`);
+                }
+                galleryList.push('madhusudan.jpg', 'durga.jpg', 'hiranya_garbheswar.jpg', 'hanuman.jpg', 'ganesh.jpg', 'surya.jpg', 'lakshmi_narayan.jpg', 'narmadeshwar.jpg');
+
+                galleryList.forEach((imgSrc) => {
+                    // onerror completely hides the parent <a> tag if the image isn't found
+                    const itemHTML = `
+                            <a data-fancybox="gallery" href="${imgSrc}" class="block w-full sm:w-[calc(50%-1rem)] md:w-[calc(33.33%-1rem)] lg:w-[calc(25%-1rem)]">
+                                <div class="overflow-hidden rounded-lg custom-shadow group h-48">
+                                    <img src="${imgSrc}" alt="Gallery Image" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" onerror="this.closest('a').style.display='none';">
+                                </div>
+                            </a>
+                        `;
+                    grid.innerHTML += itemHTML;
+                });
+                Fancybox.bind("[data-fancybox]", {}); 
+            }
+
+            function setLanguage(lang) {
+                document.body.classList.add('page-flip');
+                
+                setTimeout(() => {
+                    currentLang = lang;
+                    translatableElements.forEach(el => {
+                        const key = el.getAttribute('data-translate');
+                        if (translations[lang] && translations[lang][key]) {
+                            el.innerHTML = translations[lang][key];
+                        }
+                    });
+                    document.documentElement.lang = lang;
+                    populateDeities(lang);
+                    
+                    document.body.classList.remove('page-flip');
+                }, 1000); 
+            }
+
+            languageSwitcher.addEventListener('change', (event) => setLanguage(event.target.value));
+
+            // --- MOBILE MENU ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+            // Smooth scrolling navigation
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({ 
+                        behavior: 'smooth', block: 'start'
+                    });
+                    if (!mobileMenu.classList.contains('hidden')) mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // Fade-in observers
+            const fadeInElements = document.querySelectorAll('.fade-in-up');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+            fadeInElements.forEach(el => observer.observe(el));
+
+            // --- DEITY FLIP & ZOOM LOGIC ---
+            const overlay = document.getElementById('deity-modal-overlay');
+            let activeCard = null;
+
+            function addDeityCardListeners() {
+                document.querySelectorAll('.deity-card').forEach(card => {
+                    card.addEventListener('click', () => {
+                        if (activeCard) return;
+
+                        const cardRect = card.getBoundingClientRect();
+                        activeCard = card.cloneNode(true);
+                        activeCard.classList.add('cloned-card');
+                        document.body.appendChild(activeCard);
+
+                        // Position it exactly where it was before animating
+                        activeCard.style.position = 'fixed';
+                        activeCard.style.top = `${cardRect.top}px`;
+                        activeCard.style.left = `${cardRect.left}px`;
+                        activeCard.style.width = `${cardRect.width}px`;
+                        activeCard.style.height = `${cardRect.height}px`;
+
+                        card.style.opacity = '0';
+                        overlay.classList.add('is-visible');
+
+                        // Animate to Center
+                        setTimeout(() => {
+                            activeCard.style.top = '50%';
+                            activeCard.style.left = '50%';
+                            activeCard.style.width = 'min(90vw, 800px)';
+                            activeCard.style.height = 'min(80vh, 700px)';
+                            activeCard.style.transform = 'translate(-50%, -50%)';
+                            activeCard.classList.add('is-flipped');
+                        }, 10);
+
+                        overlay.onclick = closeDeityModal;
+                    });
+                });
+            }
+
+            function closeDeityModal() {
+                if (!activeCard) return;
+
+                const originalCard = document.querySelector(`.deity-card[data-deity-id="${activeCard.dataset.deityId}"]`);
+                const cardRect = originalCard.getBoundingClientRect();
+
+                activeCard.classList.remove('is-flipped');
+
+                setTimeout(() => {
+                    activeCard.style.top = `${cardRect.top}px`;
+                    activeCard.style.left = `${cardRect.left}px`;
+                    activeCard.style.width = `${cardRect.width}px`;
+                    activeCard.style.height = `${cardRect.height}px`;
+                    activeCard.style.transform = 'translate(0, 0)';
+                }, 10);
+
+                overlay.classList.remove('is-visible');
+
+                setTimeout(() => {
+                    originalCard.style.opacity = '1';
+                    if (document.body.contains(activeCard)) {
+                        document.body.removeChild(activeCard);
+                    }
+                    activeCard = null;
+                }, 600);
+            }
+
+            // --- NARRATION / TEXT-TO-SPEECH LOGIC ---
+            const playBtn = document.getElementById('playBtn');
+            const pauseBtn = document.getElementById('pauseBtn');
+            const stopBtn = document.getElementById('stopBtn');
+            const mainContent = document.getElementById('main-content');
+            const synth = window.speechSynthesis;
+            let utterance = null;
+
+            function resetSpeechUI() {
+                playBtn.classList.remove('hidden');
+                pauseBtn.classList.add('hidden');
+                stopBtn.classList.add('hidden');
+            }
+
+            function playText() {
+                if (synth.paused && utterance) {
+                    synth.resume();
+                    playBtn.classList.add('hidden');
+                    pauseBtn.classList.remove('hidden');
+                    stopBtn.classList.remove('hidden');
+                } else if (!synth.speaking) {
+                    const textToRead = mainContent.innerText;
+                    utterance = new SpeechSynthesisUtterance(textToRead);
+                    utterance.lang = document.documentElement.lang === 'hi' ? 'hi-IN' : 'en-US';
+
+                    utterance.onstart = () => {
+                        playBtn.classList.add('hidden');
+                        pauseBtn.classList.remove('hidden');
+                        stopBtn.classList.remove('hidden');
+                    };
+                    utterance.onpause = () => {
+                        playBtn.classList.remove('hidden');
+                        pauseBtn.classList.add('hidden');
+                    };
+                    utterance.onresume = () => {
+                        playBtn.classList.add('hidden');
+                        pauseBtn.classList.remove('hidden');
+                    };
+                    utterance.onend = () => {
+                        resetSpeechUI();
+                        utterance = null;
+                    };
+                    synth.speak(utterance);
+                }
+            }
+
+            playBtn.addEventListener('click', playText);
+            pauseBtn.addEventListener('click', () => synth.pause());
+            stopBtn.addEventListener('click', () => synth.cancel());
+            window.addEventListener('beforeunload', () => synth.cancel());
+
+            // Initial population
+            populateGallery();
+            setLanguage('en'); 
+            setTimeout(() => document.body.classList.remove('page-flip'), 100);
+        });
+    </script>
 </body>
 </html>
